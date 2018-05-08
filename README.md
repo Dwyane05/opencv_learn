@@ -6,6 +6,7 @@ this is opencv examples
 3_mat 实现矩阵的操作，图片像素的读取
 4_xml_store 实现XML/YAML持久层存储数据，test.yml
 5_simple_gui 简单的界面， 移动位置， 创建多个窗口;此程序在arm上不能运行
+6_trackBar_mouse 在交互界面上添加滑动条，调整模糊度；创建使用鼠标事件在图像上画绿圈；此程序在arm上不能运行
 
 
 
