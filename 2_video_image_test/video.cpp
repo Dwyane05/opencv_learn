@@ -5,11 +5,13 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <unistd.h>
 using namespace std;
  
 //OpenCV 头文件
 #include "opencv2/core.hpp"
 #include "opencv2/highgui.hpp"
+#include "opencv2/imgproc.hpp"
 using namespace cv;
 
 //OpenCV 命令行解析器函数
@@ -47,6 +49,7 @@ int main( int argc, char *argv[] )
 		fprintf( stderr, "Can't open video \n" );
 		return -1;
 	}
+	sleep(2);
 //	namedWindow( "Video", 1 );
 	for( int i = 1; i < 4; i++ ){
 		Mat frame;
@@ -59,6 +62,7 @@ int main( int argc, char *argv[] )
 		string num = to_string(i);
 		name.append( num );
 		name.append(".png");
+		cvtColor(frame, frame, COLOR_BGR2GRAY);
 		imwrite( name, frame );
 //		waitKey(1000/30);
 //		if( waitKey(1000/10) == 27 )
