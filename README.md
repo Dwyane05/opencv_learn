@@ -12,4 +12,4 @@ this is opencv examples
 9_svm_recognition 实现训练SVM模型，并识别对应商品；
 
 
-
+image_process文件夹是opencv图像处理中的例子
