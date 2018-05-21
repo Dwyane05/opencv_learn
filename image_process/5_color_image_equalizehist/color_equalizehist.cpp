@@ -92,6 +92,7 @@ int main( int argc, char *argv[] )
 
 	vector<Mat> bgr;
 	split( src, bgr );
+
 	Size src_s = src.size();
 	cout << "fruits.jpg rows: " << src.rows << endl;
 	cout << "fruits.jpg cols: " << src.cols << endl;  
