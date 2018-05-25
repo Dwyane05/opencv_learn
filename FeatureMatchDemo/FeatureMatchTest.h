@@ -35,9 +35,12 @@ public:
 
 	void showMatches(const std::vector<cv::DMatch>& matches,cv::Mat& matchesImg, const string& windowName);
 
+	void draw_contour( const std::vector<cv::DMatch>& matches, cv::Mat &show_img);
+
 private:
 	std::shared_ptr<cv::DescriptorMatcher> matcher;
 	std::shared_ptr<Pattern> leftPattern;
 	std::shared_ptr<Pattern> rightPattern;
+
 };
 

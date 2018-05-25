@@ -4,7 +4,8 @@ CC  = gcc
 LDFLAGS += -lrt -lpthread -ldl -lopencv_core -lopencv_highgui -lopencv_imgcodecs -lopencv_videoio -lopencv_imgproc -lopencv_xfeatures2d -lopencv_features2d -lopencv_flann -lopencv_calib3d
 
 #src := sample.cpp 
-src := flann.cpp
+src := source.cpp
+#src := flann.cpp
 
 #src += utils/MultipleImageWindow.cpp
 #CFLAGS += -I${PWD}/utils

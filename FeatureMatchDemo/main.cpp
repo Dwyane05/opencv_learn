@@ -89,7 +89,13 @@ void featureMatchDemo( String &src, String &test )
 
 	Mat matches_img;
 	string win_name = "Func_Matches";
+
 	ft.showMatches( matches, matches_img, win_name);
+
+	ft.draw_contour( matches, matches_img );
+	imshow( "contour result", matches_img );
+	waitKey(0);
+
 #if 0
 	Mat outImg;
 	drawMatches(leftPattern->image, leftPattern->keypoints, rightPattern->image, rightPattern->keypoints, matches, outImg);

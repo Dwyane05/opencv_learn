@@ -13,7 +13,6 @@ FeatureMatchTest::FeatureMatchTest(std::shared_ptr<Pattern> left, std::shared_pt
 		std::shared_ptr<cv::DescriptorMatcher> matcher) :
 				leftPattern(left), rightPattern(right), matcher(matcher)
 {
-
 	//step1:Create detector
 	//define variable and class
 	int minHessian = 400;	//定义SURF中的hessian阈值特征点检测算子
@@ -139,9 +138,47 @@ void FeatureMatchTest::refineMatchesWithFundmentalMatrix(vector<DMatch>& matches
 void FeatureMatchTest::showMatches(const vector<DMatch>& matches,Mat& matchesImg,
 		const string& windowName) {
 
-	drawMatches(leftPattern->image, leftPattern->keypoints, rightPattern->image, rightPattern->keypoints, matches, matchesImg);
+	drawMatches(leftPattern->image, leftPattern->keypoints, rightPattern->image,
+			rightPattern->keypoints, matches, matchesImg);
 	namedWindow(windowName);
 	imshow(windowName, matchesImg);
 	waitKey();
 	destroyWindow(windowName);
+}
+
+void FeatureMatchTest::draw_contour( const std::vector<cv::DMatch>& matches, Mat &show_img )
+{
+	std::vector<Point2f> obj;
+	std::vector<Point2f> scene;
+
+	for (int i = 0; i < matches.size(); i++)
+	{
+		//-- Get the keypoints from the good matches
+		obj.push_back(leftPattern->keypoints[matches[i].queryIdx].pt);
+		scene.push_back(rightPattern->keypoints[matches[i].trainIdx].pt);
+	}
+
+	Mat H = findHomography(obj, scene, RANSAC);
+
+	//-- Get the corners from the image_1 ( the object to be "detected" )
+	std::vector<Point2f> obj_corners(4);
+	obj_corners[0] = cvPoint(0, 0);
+	obj_corners[1] = cvPoint(leftPattern->image.cols, 0);
+	obj_corners[2] = cvPoint(leftPattern->image.cols, leftPattern->image.rows);
+	obj_corners[3] = cvPoint(0, leftPattern->image.rows);
+
+	std::vector<Point2f> scene_corners(4);
+
+	perspectiveTransform(obj_corners, scene_corners, H );
+
+	//-- Draw lines between the corners (the mapped object in the scene - image_2 )
+	line(show_img, scene_corners[0] + Point2f(leftPattern->image.cols, 0),
+			scene_corners[1] + Point2f(leftPattern->image.cols, 0), Scalar(0, 255, 0), 4);
+	line(show_img, scene_corners[1] + Point2f(leftPattern->image.cols, 0),
+			scene_corners[2] + Point2f(leftPattern->image.cols, 0), Scalar(0, 255, 0), 4);
+	line(show_img, scene_corners[2] + Point2f(leftPattern->image.cols, 0),
+			scene_corners[3] + Point2f(leftPattern->image.cols, 0), Scalar(0, 255, 0), 4);
+	line(show_img, scene_corners[3] + Point2f(leftPattern->image.cols, 0),
+			scene_corners[0] + Point2f(leftPattern->image.cols, 0), Scalar(0, 255, 0), 4);
+
 }

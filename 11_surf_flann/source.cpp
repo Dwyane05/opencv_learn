@@ -16,8 +16,8 @@ using namespace cv::xfeatures2d;
 /** @function main */
 int main(int argc, char** argv)
 {
-	std::string fileImgA = "box.png";
-	std::string fileImgB = "box_in_scene.png";
+	std::string fileImgA = "lena.jpg";
+	std::string fileImgB = "lena_change.jpg";
 
 	Mat img_object = cv::imread(fileImgA, IMREAD_GRAYSCALE);
 	Mat img_scene = imread(fileImgB, IMREAD_GRAYSCALE);
