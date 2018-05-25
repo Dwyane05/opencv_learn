@@ -1,51 +1,17 @@
-ARCH?=arm
+CXX = g++
+CC  = gcc
 
-TOPDIR=${PWD}
+LDFLAGS += -lrt -lpthread -ldl -lopencv_core -lopencv_highgui -lopencv_imgcodecs -lopencv_videoio -lopencv_imgproc -lopencv_xfeatures2d -lopencv_features2d -lopencv_flann -lopencv_calib3d
 
-CFLAGS := -Wall 
-#CFLAGS += -I${PWD} -Wno-psabi
-#CFLAGS += -I${PWD}/../include
-CFLAGS +=  -DDEBUG
+#src := sample.cpp 
+src := filestorage.cpp
+#src := flann.cpp
 
-Q=@
-
-CROSS_COMPILE= /opt/ingenic_compiler/mips-gcc472-glibc216/bin/mips-linux-gnu-
-
-#CROSS_COMPILE=/opt/allwiner_compiler/external-toolchain/bin/arm-linux-gnueabi-
-LIBS_PATH=/opt/yoko_libs
-
-
-CXX=${CROSS_COMPILE}g++
-CC=${CROSS_COMPILE}gcc
-#CXX=g++
-#CC=gcc
-#libopencv
-CFLAGS += -I${LIBS_PATH}/ingenic/opencv320/include
-LDFLAGS += -lopencv_core -lopencv_video -lopencv_videoio  -lopencv_highgui -lopencv_imgcodecs -lopencv_imgproc -L${LIBS_PATH}/ingenic/opencv320/lib
-#
-
-# for optimizing, close it for debug
-#CFLAGS += -O 
-#CFLAGS += -Os
-#CFLAGS += -std=gnu++11
-CFLAGS += -std=c++11
-
-LDFLAGS += -lrt -lpthread -ldl
-#LDFLAGS +=  -lopencv_core -lopencv_features2d -lopencv_flann -lopencv_video -lopencv_videoio  -lopencv_highgui -lopencv_imgcodecs -lopencv_imgproc -lopencv_xfeatures2d  
-
-ifdef FULL
-CFLAGS_FULL:= -Wextra -Wfloat-equal -save-temps 
-else
-CFLAGS_FULL:=
-endif
-
-
-
-src := xml.cpp 
-
+#src += utils/MultipleImageWindow.cpp
+#CFLAGS += -I${PWD}/utils
 
 objects=$(patsubst %.cpp,%.o, $(src))
-target = xml_test
+target = filestorage
 
 .PHONY:all
 all:${target}
