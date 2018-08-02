@@ -18,7 +18,10 @@ this is opencv examples
 	flann.cpp是先实现matcher匹配器的训练，然后将测试图像在训练好的匹配器中匹配；
 	sample.cpp是OpenCV3.2sample中带的示例程序；
 	source.cpp 使用homography找出图像四角位置，并画出；
+
 FeatureMatchDemo 实现了以类的方式比较两幅图像特征点，并且使用knnMatch、Fundamental、Homography优化特征点
+
+v4l2_and_opencv_operate_camera 使用v4l2和OpenCV联合操作图像；
 
 image_process文件夹是opencv图像处理中的例子
 

@@ -1,0 +1,1 @@
+/home/cui/opencv/app_ingenic/opencv_learn/13_spilt_channels/split-channels/build/CMakeFiles/SplitChannels.dir
