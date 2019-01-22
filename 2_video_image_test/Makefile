@@ -15,10 +15,10 @@ CROSS_COMPILE= /opt/ingenic_compiler/mips-gcc472-glibc216/bin/mips-linux-gnu-
 LIBS_PATH=/opt/yoko_libs
 
 
-CXX=${CROSS_COMPILE}g++
-CC=${CROSS_COMPILE}gcc
-#CXX=g++
-#CC=gcc
+#CXX=${CROSS_COMPILE}g++
+#CC=${CROSS_COMPILE}gcc
+CXX=g++
+CC=gcc
 #libopencv
 CFLAGS += -I${LIBS_PATH}/ingenic/opencv320/include
 LDFLAGS += -lopencv_core -lopencv_video -lopencv_videoio  -lopencv_highgui -lopencv_imgcodecs -lopencv_imgproc -L${LIBS_PATH}/ingenic/opencv320/lib
