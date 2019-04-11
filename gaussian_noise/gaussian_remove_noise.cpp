@@ -108,6 +108,7 @@ int main(int argc, char* argv[])
 //        imwrite(newname, newImage);
         my_pics.push_back(newImage);
     }
+    imshow("noise",my_pics.at(0) );
     cout << "add Noise end" << endl;
 
     //获得消除噪声的输出
